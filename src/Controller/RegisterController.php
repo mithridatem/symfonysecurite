@@ -31,10 +31,13 @@ final class RegisterController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted()) {
-            dd($form->getData());
+            //Récupération des données du formulaire
+            $data = $request->request->all()["register"];
+            //Nettoyage des données
+            $data = $this->utilsService->sanitizeArray($data);
+            //Setter les informations
             $user->setRoles(["ROLE_USER"]);
             $user->setActived(false);
-            /* dd($user); */
         }
 
         return $this->render('register/addUser.html.twig', [
