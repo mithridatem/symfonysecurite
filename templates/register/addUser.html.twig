@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un compte</h1>
+    {{ form_start(formulaire) }}
+    {{ form_row(formulaire.firstname)}}
+    {{ form_row(formulaire.lastname)}}
+    {{ form_row(formulaire.email)}}
+    {{ form_row(formulaire.plainPassword)}}
+    {{ form_rest(formulaire) }}
+    {{ form_end(formulaire) }}
+{% endblock %}
