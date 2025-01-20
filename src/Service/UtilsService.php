@@ -17,15 +17,13 @@ class UtilsService
     {
         $cleanData = [];
         foreach ($data as $key => $value) {
-            if(gettype($value) == "array"){
-                foreach($value as $key1 => $value1) {
+            if (gettype($value) == "array") {
+                foreach ($value as $key1 => $value1) {
                     $cleanData[$key1] = $this->sanitize($value1);
                 }
-            }
-            else if($key != '_token'){
+            } else if ($key != '_token') {
                 $cleanData[$key] = $this->sanitize($value);
-            }
-            else{
+            } else {
                 $cleanData[$key] = $value;
             }
         }

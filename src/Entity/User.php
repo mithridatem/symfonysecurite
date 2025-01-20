@@ -6,11 +6,15 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use App\Service\UtilsService;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
+    private readonly UtilsService $utilsService;
+    
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -39,6 +43,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?bool $actived = null;
+
+    public function __construct(
+    ) {
+        $this->utilsService = new UtilsService();
+    }
 
     public function getId(): ?int
     {
@@ -148,6 +157,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->actived = $actived;
 
+        return $this;
+    }
+
+    public function sanitizeUser(): static
+    {
+        foreach ($this as $key => $value) {
+            $method = 'set' . ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($this->utilsService->sanitize($value));
+            }
+        }
         return $this;
     }
 }
