@@ -29,4 +29,14 @@ class UtilsService
         }
         return $cleanData;
     }
+
+    public function utf8Encode(string $str): string
+    {
+
+        return mb_convert_encoding(
+            $str,
+            "UTF-8",
+            mb_detect_encoding($str)
+        );
+    }
 }

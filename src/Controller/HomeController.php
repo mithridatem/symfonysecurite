@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Service\EmailService;
+use App\Service\UtilsService;
 
 final class HomeController extends AbstractController
 {
@@ -19,7 +20,16 @@ final class HomeController extends AbstractController
 
     #[Route('/test', name:'app_home_test')]
     public function testSmtp(EmailService $emailService) :Response {
-        $emailService->sendEmail("mathieumithridate@adrar-formation.com", "Test email", "<h1>Test d'envoi de mail</h1>");
+        $objet = "Mail pour tester la méthode sendEmail";
+        
+        $corps = "Ceci est un email pour tester la méthode sendEmail de mon projet";
+        $destinataire = "mathieumithridate@adrar-formation.com";
+        $body = $this->render('email/modele.html.twig', [
+            'subject' => $objet,
+            'body' => $corps,
+            'sender' => $emailService->getUserEmail()
+        ]);
+        $emailService->sendEmail($destinataire, $objet,$body->getContent());
         return new Response();
     }
 }

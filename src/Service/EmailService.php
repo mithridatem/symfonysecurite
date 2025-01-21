@@ -17,7 +17,11 @@ class EmailService
     ) {
         $this->mail = new PHPMailer(true); 
     }
-    
+
+    public function getUserEmail() : string {
+        return $this->userEmail;
+    }
+
     //Méthode pour envoyer les emails
     public function sendEmail(string $destinataire, string $objet, string $body) {
         
@@ -56,7 +60,8 @@ class EmailService
         $this->mail->Username   = $this->userEmail;                     //SMTP username
         $this->mail->Password   = $this->pwdEmail;                               //SMTP password
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-        $this->mail->Port       = $this->portSmtpEmail;     
+        $this->mail->Port       = $this->portSmtpEmail;
+        $this->mail->CharSet = PHPMailer::CHARSET_UTF8;     
     }
 }
 
