@@ -19,6 +19,7 @@ final class HomeController extends AbstractController
 
     #[Route('/test', name:'app_home_test')]
     public function testSmtp(EmailService $emailService) :Response {
+        $emailService->sendEmail("test@tt.fr", "Test email", "<h1>Test d'envoi de mail</h1>");
         return new Response($emailService->test());
     }
 }
