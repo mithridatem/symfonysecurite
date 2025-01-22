@@ -53,7 +53,7 @@ class EmailService
     //Méthode pour configurer l'envoi de mail
     public function configEmail() {
         //Server settings
-        $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $this->mail->SMTPDebug = SMTP::DEBUG_OFF;                      //Enable verbose debug output
         $this->mail->isSMTP();                                            //Send using SMTP
         $this->mail->Host       = $this->smtpEmail;                     //Set the SMTP server to send through
         $this->mail->SMTPAuth   = true;                                   //Enable SMTP authentication
@@ -61,7 +61,7 @@ class EmailService
         $this->mail->Password   = $this->pwdEmail;                               //SMTP password
         $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $this->mail->Port       = $this->portSmtpEmail;
-        $this->mail->CharSet = PHPMailer::CHARSET_UTF8;     
+        $this->mail->CharSet    = PHPMailer::CHARSET_UTF8;     
     }
 }
 
