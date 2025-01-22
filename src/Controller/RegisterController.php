@@ -16,7 +16,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\DBAL\Driver\PDO\Exception;
 use App\Service\EmailService;
 use App\Service\UtilsService;
-use SebastianBergmann\CodeCoverage\Report\Html\Renderer;
 
 final class RegisterController extends AbstractController
 {
