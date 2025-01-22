@@ -1,5 +1,5 @@
-var nameCheck = /^[-_a-zA-Z0-9]{4,22}$/;
-var tokenCheck = /^[-_/+a-zA-Z0-9]{24,}$/;
+let nameCheck = /^[-_a-zA-Z0-9]{4,22}$/;
+let tokenCheck = /^[-_/+a-zA-Z0-9]{24,}$/;
 
 // Generate and double-submit a CSRF token in a form field and a cookie, as defined by Symfony's SameOriginCsrfTokenManager
 document.addEventListener('submit', function (event) {
