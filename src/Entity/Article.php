@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
 class Article
@@ -17,12 +18,15 @@ class Article
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['article:readAll'])]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Groups(['article:readAll'])]
     private ?string $content = null;
 
     #[ORM\Column]
+    #[Groups(['article:readAll'])]
     private ?\DateTimeImmutable $createAt = null;
 
     #[ORM\Column]
@@ -32,9 +36,11 @@ class Article
      * @var Collection<int, Category>
      */
     #[ORM\ManyToMany(targetEntity: Category::class)]
+ 
     private Collection $categories;
 
     #[ORM\ManyToOne]
+    #[Groups(['article:readAll'])]
     private ?User $author = null;
 
     /**
@@ -150,7 +156,7 @@ class Article
     {
         if (!$this->commentaries->contains($commentary)) {
             $this->commentaries->add($commentary);
-            $commentary->setArticles($this);
+            $commentary->setArticle($this);
         }
 
         return $this;
@@ -160,8 +166,8 @@ class Article
     {
         if ($this->commentaries->removeElement($commentary)) {
             // set the owning side to null (unless already changed)
-            if ($commentary->getArticles() === $this) {
-                $commentary->setArticles(null);
+            if ($commentary->getArticle() === $this) {
+                $commentary->setArticle(null);
             }
         }
 
