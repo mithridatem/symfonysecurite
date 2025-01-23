@@ -26,8 +26,8 @@ USER_EMAIL=
 PWD_EMAIL=
 SMTP_EMAIL=
 PORT_SMTP_EMAIL=
-JWT_SECRET_KEY=
-JWT_PUBLIC_KEY=
+JWT_SECRET_KEY=%kernel.project_dir%/config/jwt/private.pem
+JWT_PUBLIC_KEY=%kernel.project_dir%/config/jwt/public.pem
 JWT_PASSPHRASE=
 
 # Ajouter les entrées suivantes dans le fichier .env.dev
