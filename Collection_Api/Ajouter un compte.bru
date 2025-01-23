@@ -1,0 +1,35 @@
+meta {
+  name: Ajouter un compte
+  type: http
+  seq: 4
+}
+
+post {
+  url: https://127.0.0.1:8000/api/user
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "firstname":"test",
+    "lastname":"test",
+    "email":"test@test.com",
+    "password":"1234"
+  }
+}
+
+docs {
+  Pour ajouter un compte :
+  
+  Veuillez ajouter un jSON dans le body 
+  
+  Comme ci-dessous :
+  
+  {
+    "firstname":"xxxx",
+    "lastname":"xxxx",
+    "email":"xxxx@xxxx.xxx",
+    "password":"xxxx"
+  }
+}
