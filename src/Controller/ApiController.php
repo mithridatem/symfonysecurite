@@ -18,21 +18,20 @@ class ApiController extends AbstractController
         private readonly ArticleRepository $articleRepository
     ) {}
     
-    #[Route('/api/all', name:'app_all_user')]
-    public function getAllUser() :Response {
-        return $this->json($this->userRepository->findAll(),200, [
-            "Access-Control-Allow-Origin"=> "*",
-            "Content-Type"=>"application/json"
-        ], ['groups'=>"user:readAll"]);
-    }
-
-    #[Route('/api/articleall', name:'app_all_article')]
+    //Méthode pour afficher les articles avec les commentaires, catégories, auteur
+    #[Route('/api/articles', name:'app_articles_full')]
     #[IsGranted("ROLE_USER")]
-    public function getAllArticle() :Response {
-        return $this->json($this->articleRepository->findAll(),200,[
+    public function getArticleFull() :Response {
+        $articles = $this->articleRepository->findAll();
+        $code = 200;
+        //test si il y a des articles en BDD
+        if(!$articles) {
+            $articles = ["erreur"=>"la liste est vide"];
+            $code = 400;
+        }
+        return $this->json($articles, $code, [
             "Access-Control-Allow-Origin"=> "*",
             "Content-Type"=>"application/json"
-        ], ['groups'=>'article:readAll']);
+        ], ['groups'=>'article:fullAll']);
     }
-
 }

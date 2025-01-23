@@ -19,34 +19,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['user:readAll'])]
+    #[Groups(['user:me', 'user:all'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
-    #[Groups('user:readAll')]
+    #[Groups(['user:me', 'user:all'])]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
+    #[Groups(['user:me', 'user:all'])]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Groups(['user:me'])]
     private ?string $password = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['article:readAll'])]
+    #[Groups(['article:readAll','user:me', 'user:all'])]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['article:readAll'])]
+    #[Groups(['article:readAll','user:me', 'user:all'])]
     private ?string $lastname = null;
 
     #[ORM\Column]
+    #[Groups(['user:me', 'user:all'])]
     private ?bool $actived = null;
 
     public function __construct(

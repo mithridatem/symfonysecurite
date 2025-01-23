@@ -1,0 +1,29 @@
+meta {
+  name: Récupération du token JWT
+  type: http
+  seq: 3
+}
+
+get {
+  url: https://127.0.0.1:8000/api/login_check
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username":"mathieu.mith@laposte.net",
+    "password":"1234"
+  }
+}
+
+docs {
+  Pour récupérer votre Token JWT.
+  Ajouter un JSON dans le BODY 
+  comme ci-dessous :
+  
+  {
+    "username":"votre adresse email",
+    "password";"votre mot de passe"
+  }
+}

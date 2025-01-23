@@ -15,6 +15,7 @@ class Article
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(['article:readAll'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
@@ -36,7 +37,8 @@ class Article
      * @var Collection<int, Category>
      */
     #[ORM\ManyToMany(targetEntity: Category::class)]
- 
+    #[Groups(['article:readAll'])]
+
     private Collection $categories;
 
     #[ORM\ManyToOne]
@@ -46,7 +48,8 @@ class Article
     /**
      * @var Collection<int, Commentary>
      */
-    #[ORM\OneToMany(targetEntity: Commentary::class, mappedBy: 'articles')]
+    #[ORM\OneToMany(targetEntity: Commentary::class, mappedBy: 'article')]
+    #[Groups(['article:readAll'])]
     private Collection $commentaries;
 
     public function __construct()

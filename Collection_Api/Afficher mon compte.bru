@@ -1,0 +1,21 @@
+meta {
+  name: Afficher mon compte
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://127.0.0.1:8000/api/me
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3Mzc2NTcxODIsImV4cCI6MTczNzY2MDc4Miwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoibWF0aGlldS5taXRoQGxhcG9zdGUubmV0In0.TQdu0uhPdNlsCUxWEC6Uuf_JOl0ZBNbmoIwp2dQb6aUZvTPEQ2m2afkqZAzUseTwDcYCAudfu6YoYanJH6CyBEWDUo9g0o0RkEj5n5Y1EduuBc0KzUuHrW7O5A-JTbptfgr5nglx8dFtFtKjMpVHJbP0dqByeFjGcNTXD77l72kw8WzZU88WUFrLfxYh3owNPvjyMR3n-Q5qcmBiV8nGfAZofixGTKEg99_-RU6gV0xkgWOjo-uOn_ULuVQ6k07YV6bjKu_8ClE1pYtBBcdPrwFvOD5bdkGxhX_eN1KYdXyhmvSicOacRqw4uYP0r0Z02NKfK1-USrDH-OvwRfTViRBSRRAM7dezJwiTM8nFSUPQNendesjL4guRFKLnbmBzWVJpB5GEq3AQEfrnB84ORHC7-BSxPrzfxyAqlX9XKzU63HYtsEHH6xu7xu-SuElk3kd1rB_K5jagkmdbuaWVgeYClJKXHzfa6pYvpcQ23PF9kjiWReOudjeZZ9qnCfIL_oPVcbK3kKCkfoLcG50XZq4j0BWMmMgjxQpQAHmtXuSlz4IIAEoDA5xgwbFMCZeulZQWp2DI-kTlDgJpfv6oNhImWePLRmDBEsPq4SiDNzQQXl8VTIBcKsm5OQmw38fM_rh8FV9GcmGwvSixf0TUXftKRUjSQa8rp05k5yF0tHI
+}
+
+docs {
+  Ajouter votre Token récupéré avec la route
+  https://127.0.0.1:8000/api/login_check
+  dans AUTH -> Bearer Token
+}
